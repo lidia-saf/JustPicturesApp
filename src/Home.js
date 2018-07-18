@@ -11,6 +11,7 @@ constructor(props) {
     modalDesc: ""
   }
 }
+//renders the pictures in the rows and columns from the state
   gridCreator() {
     let picturesWrapper = [];
     let mappedPictures = this.props.pictures.map((pic) => {
@@ -28,20 +29,17 @@ constructor(props) {
   return picturesWrapper;
   }
   
+  //shows and hides the modal for a particular picture on click
   activateModal(src, description) {
     console.log(description);
-    !this.state.modalShown ? this.setState({modalShown: true}) : this.setState({modalShown: false});
-    
-    !this.state.modalShown ? 
-    this.setState({modalImgSrc: "", modalDesc: ""}) : 
-    this.setState({modalImgSrc: src, modalDesc: description})
-
+    !this.state.modalShown ? this.setState({modalShown: true, modalImgSrc: src, modalDesc: description}) : this.setState({modalShown: false, modalImgSrc: "", modalDesc: ""});
   }
+
 
   render() {
     return (
       <div>
-        <h2>Enjoy pictures encapsulating moment of life:</h2>
+        <h2>Click on picture to see the captured moment of life</h2>
         <br/>
         <div className="picturesContainer">
          {this.gridCreator()}
@@ -50,7 +48,7 @@ constructor(props) {
         <div id="myModal" className="modal" style={this.state.modalShown ? {display: "block"} : {display: "none"}}>
           <span className="close" onClick={() => this.activateModal()}>&times;</span>
           <img className="modalContent" src={this.state.modalImgSrc} id="image" alt="unopened moment of life"/>
-          <div id="caption">{this.state.modalDesc}</div>
+          <div id="caption">{this.state.modalDesc == null ? "Captured moment of life" : this.state.modalDesc}</div>
         </div>
       </div>
     );
