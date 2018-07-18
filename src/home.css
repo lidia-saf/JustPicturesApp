@@ -47,7 +47,10 @@
 .modal {
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 15%;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 15%;
   left: 0;
   top: 0;
   width: 100%;
@@ -58,11 +61,15 @@
 }
 
 .modal-content {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: 100%;
-  max-width: 700px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#image {
+  max-width: 100%;
 }
 
 #caption {
@@ -76,7 +83,7 @@
   height: 150px;
 }
 
-.modal-content, #caption {
+#imaage, #caption {
   -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
   animation-name: zoom;
