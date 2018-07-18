@@ -2,6 +2,6 @@
 
 This app shows 30 randomly chosen pictures with API call to Unslash.
 
-## Screenshots:
+## Screenshot:
 
-Will be added later
+![image](https://github.com/lidia-saf/JustPicturesApp/blob/master/ScreenShot1.png "Screenshot")
