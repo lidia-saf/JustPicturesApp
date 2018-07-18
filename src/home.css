@@ -1,0 +1,10 @@
+.picturesContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+ 
+
+  img {
+   width: 80%;
+  }
