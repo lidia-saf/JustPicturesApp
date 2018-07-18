@@ -24,7 +24,7 @@ ul.header li {
 }
 
 ul.header {
-  background-color: #5F4B8B;
+  background-color: #2D2C4D;
   padding: 0;
 }
 
@@ -37,7 +37,7 @@ ul.header li a {
 }
 
 .active {
-  background-color: #2D2C4D;
+  background-color: #5F4B8B;
 }
 
 .content {
@@ -54,7 +54,7 @@ ul.header li a {
 }
 
 .footer {
-  background-color: #5F4B8B;
+  background-color: #2D2C4D;
   padding: 0;
 }
 
