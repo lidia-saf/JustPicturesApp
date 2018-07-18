@@ -1,5 +1,13 @@
+html {
+  box-sizing: border-box;
+}
+
+*,*:before,*:after{
+  box-sizing: inherit;
+}
+
 body {
-  background-color: #EEEAE3;
+  background-color: white;
   color: #2D2C4D;
   padding: 20px;
   margin: 0;
@@ -21,7 +29,7 @@ ul.header {
 }
 
 ul.header li a {
-  color: #EEEAE3;
+  color: white;
   font-weight: bold;
   text-decoration: none;
   padding: 20px;
@@ -51,7 +59,7 @@ ul.header li a {
 }
 
 .footerMessage {
-  color: #EEEAE3;
+  color: white;
   font-weight: bold;
   text-decoration: none;
   padding: 20px;

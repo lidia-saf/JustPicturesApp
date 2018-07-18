@@ -1,10 +1,17 @@
 .picturesContainer {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-  }
- 
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.responsiveImage {
+  max-width: 80%;
+}
+
+@media screen and (min-width: 600px) {
+  
+}
 
   img {
-   width: 80%;
+  display: block;
   }
