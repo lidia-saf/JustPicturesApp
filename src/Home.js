@@ -17,7 +17,7 @@ constructor(props) {
     let mappedPictures = this.props.pictures.map((pic) => {
       return(
           <div key={pic.id} className="cell">
-            <img src={pic.pictures} className="responsiveImage" alt="unopened moment of life" onClick={() => this.activateModal(pic.pictures, pic.description)} />
+            <img id={pic.id} src={pic.pictures} className="responsiveImage" description={pic.description} alt="unopened moment of life" onClick={(e) => this.activateModal(e)} />
           </div>
       )
     });
@@ -30,9 +30,9 @@ constructor(props) {
   }
   
   //shows and hides the modal for a particular picture on click
-  activateModal(src, description) {
-    console.log(description);
-    !this.state.modalShown ? this.setState({modalShown: true, modalImgSrc: src, modalDesc: description}) : this.setState({modalShown: false, modalImgSrc: "", modalDesc: ""});
+  activateModal(e) {
+    console.log(e.target);
+ //   !this.state.modalShown ? this.setState({modalShown: true, modalImgSrc: src, modalDesc: description}) : this.setState({modalShown: false, modalImgSrc: "", modalDesc: ""});
   }
 
 

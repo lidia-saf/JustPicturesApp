@@ -12,7 +12,13 @@ import "babel-polyfill";
 
 
 //initial state
-const initial = {isFetching: false, pictures: []};
+const initial = {
+  isFetching: false, 
+  pictures: [], 
+  modalShown: false, 
+  modalImgSrc: "",
+  modalId: "",
+  modalDesc: ""};
 
 //reducer function
 function reducer(state = initial, action) {
@@ -29,7 +35,21 @@ function reducer(state = initial, action) {
         })}
       )
       console.log(newState)
-      return newState
+      return newState;
+    case SHOW_MODAL:
+      return Object.assign({}, state, {
+        modalShown: true, 
+        modalImgSrc: action.payload.target.src, 
+        modalId: action.payload.target.id,
+        modalDesc: action.payload.target.description
+      });
+    case HIDE_MODAL:
+      return Object.assign({}, state, {
+        modalShown: false,
+        modalImgSrc: "",
+        modalId: "",
+        modalDesc: ""
+      })
     default:
       return state;
   }
@@ -39,6 +59,8 @@ function reducer(state = initial, action) {
 //creating actions and action creators
 export const REQUEST_PICTURES = 'REQUEST_PICTURES';
 const RECEIVE_PICTURES = 'RECEIVE_PICTURES';
+const SHOW_MODAL = 'SHOW_MODAL';
+const HIDE_MODAL = 'HIDE_MODAL'
 
 export function requestPictures() {
   return {
@@ -57,6 +79,20 @@ function receivePictures(json) {
         description: child.description
       }
     } )
+  }
+}
+
+function showModal (event) {
+  return {
+    type: SHOW_MODAL,
+    payload: event
+  }
+}
+
+function HideModal (event) {
+  return {
+    type: HIDE_MODAL,
+    payload: event
   }
 }
 
