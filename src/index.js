@@ -82,14 +82,14 @@ function receivePictures(json) {
   }
 }
 
-function showModal (event) {
+export const showModal = event => {
   return {
     type: SHOW_MODAL,
     payload: event
   }
 }
 
-function HideModal (event) {
+export const hideModal = event => {
   return {
     type: HIDE_MODAL,
     payload: event

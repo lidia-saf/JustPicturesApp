@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import "./home.css"
+import { showModal, hideModal } from './index.js'
 import { connect } from 'react-redux'
 
 class Home extends Component {
-constructor(props) {
-  super(props);
-  this.state = {
-    modalShown: false,
-    modalImgSrc: "",
-    modalDesc: ""
-  }
-}
+
 //renders the pictures in the rows and columns from the state
   gridCreator() {
     let picturesWrapper = [];
     let mappedPictures = this.props.pictures.map((pic) => {
       return(
           <div key={pic.id} className="cell">
-            <img id={pic.id} src={pic.pictures} className="responsiveImage" description={pic.description} alt="unopened moment of life" onClick={(e) => this.activateModal(e)} />
+            <img id={pic.id} src={pic.pictures}
+             className="responsiveImage" description={pic.description}
+             alt="unopened moment of life" 
+             onClick={(e) => this.props.activateModal(e)} 
+            />
           </div>
       )
     });
@@ -29,11 +27,11 @@ constructor(props) {
   return picturesWrapper;
   }
   
-  //shows and hides the modal for a particular picture on click
-  activateModal(e) {
-    console.log(e.target);
- //   !this.state.modalShown ? this.setState({modalShown: true, modalImgSrc: src, modalDesc: description}) : this.setState({modalShown: false, modalImgSrc: "", modalDesc: ""});
-  }
+//   //shows and hides the modal for a particular picture on click
+//   activateModal(e) {
+//     console.log(e.target);
+//  //   !this.state.modalShown ? this.setState({modalShown: true, modalImgSrc: src, modalDesc: description}) : this.setState({modalShown: false, modalImgSrc: "", modalDesc: ""});
+//   }
 
 
   render() {
@@ -45,10 +43,10 @@ constructor(props) {
          {this.gridCreator()}
         </div>
    {/* The modal code goes here */}
-        <div id="myModal" className="modal" style={this.state.modalShown ? {display: "block"} : {display: "none"}}>
-          <span className="close" onClick={() => this.activateModal()}>&times;</span>
-          <img className="modalContent" src={this.state.modalImgSrc} id="image" alt="unopened moment of life"/>
-          <div id="caption">{this.state.modalDesc == null ? "Captured moment of life" : this.state.modalDesc}</div>
+        <div id="myModal" className="modal" style={this.props.modalShown ? {display: "block"} : {display: "none"}}>
+          <span className="close" onClick={(e) => this.props.deactivateModal(e)}>&times;</span>
+          <img className="modalContent" src={this.props.modalImgSrc} id="image" alt="unopened moment of life"/>
+          <div id="caption">{this.props.modalDesc == null ? "Captured moment of life" : this.props.modalDesc}</div>
         </div>
       </div>
     );
@@ -57,11 +55,23 @@ constructor(props) {
 
 const mapStateToProps = state => {
   return {
-  pictures: state.pictures
+  pictures: state.pictures,
+  modalShown: state.modalShown,
+  modalImgSrc: state.modalImgSrc,
+  modalId: state.modalId,
+  modalDesc: state.modalDesc
 }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    activateModal: event => {
+      dispatch(showModal(event))},
+    deactivateModal: event => {
+      dispatch(hideModal(event))}
+    }
+  }
 
 
 //connector
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
