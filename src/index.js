@@ -4,8 +4,7 @@ import Main from "./Main";
 import "./index.css";
 //Redux dependencies
 import { Provider } from "react-redux";
-import thunkMiddleware from 'redux-thunk'
-// import { createLogger } from "redux-logger";
+import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from "redux";
 import fetch from "cross-fetch";
 import "babel-polyfill";
@@ -83,6 +82,7 @@ function receivePictures(json) {
 }
 
 export const showModal = event => {
+  event.persist();
   return {
     type: SHOW_MODAL,
     payload: event
@@ -90,6 +90,7 @@ export const showModal = event => {
 }
 
 export const hideModal = event => {
+  event.persist();
   return {
     type: HIDE_MODAL,
     payload: event
@@ -112,12 +113,8 @@ export function fetchPictures() {
   }
 }
 
-
-// //making Middleware
-// const loggerMiddleware = createLogger()
-
 //creating the store
-const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = composeEnhancers(applyMiddleware(thunkMiddleware))
 export const store = createStore(reducer, initial, middleware);
 

@@ -12,9 +12,9 @@ class Home extends Component {
       return(
           <div key={pic.id} className="cell">
             <img id={pic.id} src={pic.pictures}
-             className="responsiveImage" description={pic.description}
-             alt="unopened moment of life" 
-             onClick={(e) => this.props.activateModal(e)} 
+             className="responsiveImage"
+             alt={pic.description}
+             onClick={(event) => this.props.activateModal(event)} 
             />
           </div>
       )
@@ -24,15 +24,8 @@ class Home extends Component {
     picturesWrapper.push(<div className="grid" key="2">{mappedPictures.slice(13, 19)}</div>)
     picturesWrapper.push(<div className="grid" key="3">{mappedPictures.slice(19, 25)}</div>)
     picturesWrapper.push(<div className="grid" key="4">{mappedPictures.slice(25, 31)}</div>)
-  return picturesWrapper;
+    return picturesWrapper;
   }
-  
-//   //shows and hides the modal for a particular picture on click
-//   activateModal(e) {
-//     console.log(e.target);
-//  //   !this.state.modalShown ? this.setState({modalShown: true, modalImgSrc: src, modalDesc: description}) : this.setState({modalShown: false, modalImgSrc: "", modalDesc: ""});
-//   }
-
 
   render() {
     return (
@@ -44,7 +37,7 @@ class Home extends Component {
         </div>
    {/* The modal code goes here */}
         <div id="myModal" className="modal" style={this.props.modalShown ? {display: "block"} : {display: "none"}}>
-          <span className="close" onClick={(e) => this.props.deactivateModal(e)}>&times;</span>
+          <span className="close" onClick={(event) => this.props.deactivateModal(event)}>&times;</span>
           <img className="modalContent" src={this.props.modalImgSrc} id="image" alt="unopened moment of life"/>
           <div id="caption">{this.props.modalDesc == null ? "Captured moment of life" : this.props.modalDesc}</div>
         </div>
@@ -55,12 +48,12 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-  pictures: state.pictures,
-  modalShown: state.modalShown,
-  modalImgSrc: state.modalImgSrc,
-  modalId: state.modalId,
-  modalDesc: state.modalDesc
-}
+    pictures: state.pictures,
+    modalShown: state.modalShown,
+    modalImgSrc: state.modalImgSrc,
+    modalId: state.modalId,
+    modalDesc: state.modalDesc
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -72,6 +65,5 @@ const mapDispatchToProps = dispatch => {
     }
   }
 
-
-//connector
+//connector function
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
